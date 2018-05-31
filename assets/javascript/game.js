@@ -12,14 +12,13 @@ window.onload= function(){
     reset();
     document.onkeyup = function(event){
         userGuess(event);
-        if(userGuess)
         playingGame();
     }
 }
 
 //JavaScript to create select a random letter from the alphabet
 function computersChoice(){
-    computersOption= ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
+    computersOptio;n= ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
     let computersChoice = computersOption[Math.floor(Math.random*computersOption.length)];
 }
 
