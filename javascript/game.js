@@ -5,6 +5,17 @@ let guesses=10;
 let guessesLeft=10;
 let guessedLetters=[];
 let letterToGuess=null;
+let userGuessed=null;
+
+//document.ready that allows the HTML to load before javascript
+window.onload= function(){
+    reset();
+    document.onkeyup = function(event){
+        userGuess(event);
+        if(userGuess)
+        playingGame();
+    }
+}
 
 //JavaScript to create select a random letter from the alphabet
 function computersChoice(){
@@ -13,14 +24,22 @@ function computersChoice(){
 }
 
 //JavaScript for player guess based on the player clicking on a key
-function userGuess(e){
-    let userGuess= e.key;
+function userGuess(event){
+    userGuessed= event.key;
+    userGuessed= userGuessed.toUpperCase();
+}
+
+//Javascript to indicate how many guesses player has left
+function guessesRemaining(){
+    document.querySelector('.guessesLeft').innerHTML="Guesses left: " + guessesLeft;
 }
 
 //Creates a list of all the guesses made so far
-function remainingGuesses(){
-    document.querySelector('.currentGuess').innerHTML = 'Your Guesses so far: ' + guessedLetters.append('<p>'userGuess'</p>');
+function currentGuess(){
+    guessedLetters.push(userGuessed);
+    document.querySelector('.currentGuesses').innerHTML = 'Your Guesses so far: ' + guessedLetters.join(', ');
 }
+
 
 //Function under rest conditions
 function reset(){
@@ -28,8 +47,29 @@ function reset(){
     guessesLeft=10;
     guessedLetters=[];
     computersChoice();
-    guessedLetters();
+    currentGuess();
 }
 
 //Runs the actual game
-function playingGame(computersChoice){
+function playingGame(){
+    guessesLeft--;
+    guessesRemaining();
+    currentGuess();
+
+    //win conditions
+    if(guessesLeft>0){
+        if(userGuessed===computersChoice){
+            wins++;
+            document.querySelector('.wins').innerHTML = "Wins: " + wins;
+            alert('You guesses right!  Congratulations! Let us play again!')
+            reset();
+        }
+    }
+    else if(guessesLeft===0){
+        loss++;
+        document.querySelector('.losses').innerHTML = 'Losses: ' + loss;
+        alert('Bummer!  Guess you are not clarevoyant!  Want to try again!?');
+        reset();
+    }
+}
+
