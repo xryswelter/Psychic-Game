@@ -6,23 +6,55 @@ let guessesLeft=10;
 let guessedLetters=[];
 let letterToGuess=null;
 let userGuessed=null;
+let alreadyGuessed=null;
+let validKey= null;
 let computersChoice2=null;
+
+// //Javascript to determine if a letter was already clicked already
+// function alreadyClicked(userGuessed){
+// if(guessedLetters.includes(userGuessed)){
+//     let alreadyGuessed=false;
+//     alert('Sorry you guessed this letter already!')
+// }
+// else{
+//     let alreadyGuessed=true;
+// }
+// }
+
+//Javascript to determine if a valid key to clicked
+function validGuess(){
+    let useableKeys= ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    if(useableKeys.includes(userGuessed)){
+        validKey=true;
+        console.log(validKey);
+    }
+    else{
+        validKey=false;
+        alert('Not valid key, try again.');
+        console.log(validKey);
+    }
+}
 
 //document.ready that allows the HTML to load before javascript
 window.onload= function(){
     reset();
     document.onkeyup = function(event){
         userGuess(event);
-        playingGame();
+        // alreadyClicked();
+        validGuess();
+        if(validKey){
+            playingGame();
+        } else{
+            return;
+        }   
     }
 }
 
 //JavaScript to create select a random letter from the alphabet
 function computersChoice(){
-    let computersOption= ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
+    let computersOption= ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     let computersChoice2 = computersOption[Math.floor(Math.random()*computersOption.length)];
     console.log(computersChoice2);
-    console.log(Math.floor(Math.random()*computersOption.length));
 }
 
 //JavaScript for player guess based on the player clicking on a key

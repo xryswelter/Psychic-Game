@@ -1,0 +1,31 @@
+h1{
+    font-size:48px;
+    text-align:center;
+    padding:20px;
+    Margin:10px;
+    background-color:black;
+    color: gold;
+}
+h2{
+    text-align: center;
+    font-size: 36px;
+    padding: 0px 20px 0px 20px;
+    margin: 10px;
+}
+.game{
+    margin:auto;
+    border: 1px solid black;   
+    width:400px;
+}
+.results{
+    font-size:30px;
+    font-weight:bold;
+    text-align:center;
+    margin:auto;
+    margin-bottom: 2px;
+    border-bottom-style: dotted;
+    border-color:white;
+    background-color:black;
+    color:white;
+
+}
