@@ -40,12 +40,12 @@ window.onload= function(){
     reset();
     document.onkeyup = function(event){
         userGuess(event);
-        // alreadyClicked();
+        //alreadyClicked();
         validGuess();
         if(validKey){
             playingGame();
-        } else{
-            return;
+         } else{
+             return;
         }   
     }
 }
@@ -53,14 +53,15 @@ window.onload= function(){
 //JavaScript to create select a random letter from the alphabet
 function computersChoice(){
     let computersOption= ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    let computersChoice2 = computersOption[Math.floor(Math.random()*computersOption.length)];
-    console.log(computersChoice2);
+    computersChoice2 = computersOption[Math.floor(Math.random()*computersOption.length)];
+    console.log('Computer Choice:' + computersChoice2);
 }
 
 //JavaScript for player guess based on the player clicking on a key
 function userGuess(event){
     userGuessed= event.key;
     userGuessed= userGuessed.toUpperCase();
+    console.log('user: ' + userGuessed);
 }
 
 //Javascript to indicate how many guesses player has left
@@ -92,12 +93,19 @@ function playingGame(){
 
     //win conditions
     if(guessesLeft>0){
-        if(userGuessed===computersChoice2){
+        console.log('left:'+ guessesLeft);
+        console.log(userGuessed, computersChoice2);
+        
+        if(userGuessed==computersChoice2){
             wins++;
+            console.log('Wins: '+ wins);
+            console.log('Guess:'+ userGuessed==computersChoice2)
             document.querySelector('.wins').innerHTML = "Wins: " + wins;
             alert('You guesses right!  Congratulations! Let us play again!')
             reset();
+            console.log('left2:' + guessesLeft)
         }
+        
     }
     else if(guessesLeft===0){
         loss++;
